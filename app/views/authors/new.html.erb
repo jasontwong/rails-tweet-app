@@ -1,0 +1,18 @@
+<h1>New Tweet</h1>
+
+<%= form_for @tweet, :url => authors_path do |f| %>
+  <% if @tweet.errors.any? %>
+    <div class="error_messages">
+      <h2>Form is invalid</h2>
+      <ul>
+        <% for message in @tweet.errors.full_messages %>
+          <li><%= message %></li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
+  <div class="field"><%= f.label :tweet %> <%= f.text_area :tweet %></div>
+  <div class="field"><%= f.submit %></div>
+  <div class="field"><%= f.submit "Publish" %></div>
+  <%= link_to 'My Tweets', authors_path %>
+<% end %>

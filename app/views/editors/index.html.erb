@@ -1,0 +1,17 @@
+<h1>Tweets</h1>
+<p class="notice"><%= flash[:notice] %></p>
+<p class="alert"><%= flash[:alert] %></p>
+
+<h2>Moderated Tweets</h2>
+<ul>
+  <% Tweet.where(:for_editors => true, :twitter_id => nil, :needs_moderation => true).each do |t| %>
+    <li><%= link_to t.tweet, edit_editor_path(t) %> Reason(s): <%= t.moderation_reasons.join(', ') %> Moderated: <%= t.moderation_date.strftime("%m/%d/%Y") %></li>
+  <% end %>
+</ul>
+
+<h2>Tweeted Tweets</h2>
+<ul>
+  <% Tweet.where(Tweet.arel_table[:twitter_id].not_eq(nil)).each do |t| %>
+    <li><%= t.tweet %> Retweet count: <%= t.retweet_count %></li>
+  <% end %>
+</ul>

@@ -1,0 +1,13 @@
+<h1>Tweets</h1>
+<p class="notice"><%= flash[:notice] %></p>
+<p class="alert"><%= flash[:alert] %></p>
+<h2>My Tweets</h2>
+<ul>
+  <% @current_user.authored_tweets.each do |t| %>
+    <% if !t.for_editors && t.twitter_id.nil? %>
+      <li><a href="<%= edit_author_path(t) %>"><%= t.tweet %></a></li>
+    <% end %>
+  <% end %>
+</ul>
+
+<p><a href="<%= new_author_path %>">New Tweet</a></p>

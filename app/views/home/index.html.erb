@@ -1,0 +1,8 @@
+<h1>Welcome</h1>
+<p class="notice"><%= flash[:notice] %></p>
+<p class="alert"><%= flash[:alert] %></p>
+<% unless @current_user.nil? %>
+  <p><a href="/logout">Log out (<%= @current_user.email %>)</a></p>
+<% end %>
+<p><%= link_to 'Author Tweet', authors_path %></p>
+<p><%= link_to 'Editor Tweet', editors_path %></p>
